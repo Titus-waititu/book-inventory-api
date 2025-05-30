@@ -1,4 +1,4 @@
-@url = http://localhost:8000
+@url = https://book-inventory-api-5kpv.onrender.com
 
 ### SEED DATABASE
 POST {{url}}/seed
