@@ -58,7 +58,7 @@ export class BookreviewsService {
       });
   }
 
-  async remove(id: number): Promise<{ message: string } | string> {
+  async remove(id: string): Promise<{ message: string } | string> {
     return await this.bookReviewRepository.delete(id).then((result) => {
       if (result.affected === 0) {
         throw new Error(`Book review with id ${id} not found`);

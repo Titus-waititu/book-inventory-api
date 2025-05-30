@@ -1,17 +1,92 @@
 @url = http://localhost:8000
 
-###
-GET {{url}}/bookreviews
-
-###
+### SEED DATABASE
 POST {{url}}/seed
 
-###
+
+### ✅ GET all book reviews
+GET {{url}}/bookreviews
+
+
+### ❌ DELETE specific book review (replace ID with real one after testing)
+DELETE {{url}}/bookreviews/53bebecf-0f75-4494-8f9d-d6d3f03b5ee0
+
+
+### ✅ CREATE an author
 POST {{url}}/authors
 Content-Type: application/json
 
 {
-    "name": "Kira Smith",
-    "bio": "Kira Smith is a renowned author known for her captivating novels.",
-    "birthDate": "1985-05-15"
+  "name": "Kira Smith",
+  "bio": "Kira Smith is a renowned author known for her captivating novels.",
+  "birthDate": "1985-05-15"
 }
+
+
+### 🧾 GET all authors
+GET {{url}}/authors
+
+
+### ✅ CREATE a profile
+POST {{url}}/profiles
+Content-Type: application/json
+
+{
+  "bio": "A passionate reader and tech enthusiast.",
+  "avatar": "https://i.pravatar.cc/150?img=12",
+  "dateOfBirth": "1990-07-21",
+  "location": "Nairobi"
+}
+
+
+### 🧾 GET all profiles
+GET {{url}}/profiles
+
+
+### ✅ CREATE a user (replace profileId with a real UUID from /profiles)
+POST {{url}}/users
+Content-Type: application/json
+
+{
+  "name": "Alex Mumo",
+  "email": "alexi.mumo@example.com",
+  "password": "l77yOTj6",
+  "profileId": "f8056d5c-c7f4-426c-829e-0c7bf77fe1a5"
+}
+
+
+### 🧾 GET all users with profiles
+GET {{url}}/users
+
+
+### ✅ CREATE a book (replace authorId with a real UUID from /authors)
+POST {{url}}/books
+Content-Type: application/json
+
+{
+  "title": "The Silent Echo",
+  "description": "A thrilling tale of suspense and intrigue.",
+  "publicationYear": 2023,
+  "isAvailable": true,
+  "authorId": "REPLACE_WITH_AUTHOR_UUID"
+}
+
+
+### 🧾 GET all books with authors
+GET {{url}}/books
+
+
+### ✅ CREATE a book review (replace userId and bookId with real UUIDs)
+POST {{url}}/bookreviews
+Content-Type: application/json
+
+{
+  "rating": 4,
+  "comment": "Amazing plot and character development!",
+  "userId": "REPLACE_WITH_USER_UUID",
+  "bookId": "REPLACE_WITH_BOOK_UUID"
+}
+
+
+### 🧾 GET all book reviews with user and book
+GET {{url}}/bookreviews
