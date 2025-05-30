@@ -4,29 +4,36 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { Profile } from 'src/profiles/entities/profile.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    @InjectRepository(Profile)
+    private profileRepository: Repository<Profile>,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User | null> {
-    return await this.usersRepository
-      .save(createUserDto)
-      .then((user) => {
-        return this.usersRepository.findOneBy({ id: user.id });
-      })
-      .catch((error) => {
-        throw new Error(`Error creating user: ${error.message}`);
-      });
-  }
+async create(createUserDto: CreateUserDto): Promise<User> {
+  const profile = await this.profileRepository.findOneBy({ id: createUserDto.profileId });
+  if (!profile) throw new NotFoundException('Profile not found');
+
+  const user = this.usersRepository.create({
+    ...createUserDto,
+    profile,
+  });
+  return this.usersRepository.save(user);
+}
+
 
   async findAll(): Promise<User[] | string> {
     return await this.usersRepository
       .find({
-        relations: ['profile'],
+        relations: {
+          profile: true,
+          
+        },
         order: {
           id: 'DESC',
         },

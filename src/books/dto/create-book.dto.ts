@@ -1,4 +1,13 @@
-import { IsNotEmpty, IsString, Length, IsNumber, Min, Max, IsBoolean, IsUUID } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  Length,
+  IsNumber,
+  Min,
+  Max,
+  IsBoolean,
+  IsUUID,
+} from 'class-validator';
 
 export class CreateBookDto {
   @IsNotEmpty()
@@ -20,9 +29,5 @@ export class CreateBookDto {
   @IsBoolean()
   isAvailable: boolean;
 
-  @IsUUID()
-  authorId: string;
-
-  @IsNotEmpty()
-  categoryIds: string[];
+  
 }

@@ -14,5 +14,9 @@ export class CreateAuthorDto {
   @IsOptional()
   @IsDateString()
   birthDate?: string;
+
+  @IsOptional()
+  isActive?: boolean = true;
+
 }
 

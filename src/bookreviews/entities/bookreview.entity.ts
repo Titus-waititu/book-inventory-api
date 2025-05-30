@@ -23,4 +23,7 @@ export class BookReview {
 
   @ManyToOne(() => Book, book => book.reviews)
   book: Book;
+
+  @Column({ nullable: true })
+  userId: string; // Foreign key to User entity, optional if using cascade
 }

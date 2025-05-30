@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, Length, Matches } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsUUID, Length, Matches } from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -16,4 +16,8 @@ export class CreateUserDto {
     message: 'Password too weak',
   })
   password: string;
+
+  @IsNotEmpty()
+  profileId: string; 
+
 }

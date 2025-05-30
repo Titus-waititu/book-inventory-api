@@ -30,4 +30,5 @@ export class Book {
 
   @OneToMany(() => BookReview, review => review.book)
   reviews: BookReview[];
-}
+
+  }

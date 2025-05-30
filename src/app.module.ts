@@ -9,8 +9,6 @@ import { CategoriesModule } from './categories/categories.module';
 import { BookreviewsModule } from './bookreviews/bookreviews.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
-import { SeedService } from './seed/seed.service';
-import { SeedController } from './seed/seed.controller';
 import { SeedModule } from './seed/seed.module';
 
 @Module({
@@ -25,7 +23,7 @@ import { SeedModule } from './seed/seed.module';
     DatabaseModule,
     SeedModule,
   ],
-  controllers: [AppController, SeedController],
-  providers: [AppService, SeedService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

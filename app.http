@@ -1,4 +1,17 @@
 @url = http://localhost:8000
 
 ###
-GET {{url}}/
+GET {{url}}/bookreviews
+
+###
+POST {{url}}/seed
+
+###
+POST {{url}}/authors
+Content-Type: application/json
+
+{
+    "name": "Kira Smith",
+    "bio": "Kira Smith is a renowned author known for her captivating novels.",
+    "birthDate": "1985-05-15"
+}

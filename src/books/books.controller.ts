@@ -29,6 +29,7 @@ export class BooksController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.booksService.remove(id);
+    return this.booksService.remove(
+      id);
   }
 }

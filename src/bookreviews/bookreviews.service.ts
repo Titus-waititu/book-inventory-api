@@ -20,7 +20,9 @@ export class BookreviewsService {
 
   async findAll(): Promise<BookReview[] | string> {
     return await this.bookReviewRepository.find({
-      relations: ['book','user'],
+      relations: {
+        book: true
+      },
       order: {
         createdAt: 'DESC',  
       },

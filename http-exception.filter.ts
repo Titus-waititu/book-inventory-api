@@ -4,22 +4,28 @@ import {
   ArgumentsHost,
   HttpException,
 } from '@nestjs/common';
-import { Response } from 'express';
+import { HttpAdapterHost } from '@nestjs/core';
 
-
-
-@Catch(HttpException)
+@Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
-  catch(exception: HttpException, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-    const status = exception.getStatus();
-    const message = exception.message;
+  constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
-    response.status(status).json({
-      statusCode: status,
+  catch(exception: unknown, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const httpAdapter = this.httpAdapterHost.httpAdapter;
+
+    const httpStatus =
+      exception instanceof HttpException ? exception.getStatus() : 500;
+
+    const responseBody = {
+      statusCode: httpStatus,
       timestamp: new Date().toISOString(),
-      message,
-    });
+      message:
+        exception instanceof HttpException
+          ? exception.message
+          : 'Internal server error',
+    };
+
+    httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
   }
 }

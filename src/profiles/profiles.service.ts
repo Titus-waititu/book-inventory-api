@@ -22,7 +22,7 @@ export class ProfilesService {
       });
   }
 
-  async findAll(): Promise<Profile[] | string> {
+  async findAll() {
     return await this.categoriesRepository
       .find({
         relations: ['user'],

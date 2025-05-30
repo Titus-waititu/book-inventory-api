@@ -11,9 +11,5 @@ export class CreateBookreviewDto {
   @Max(5)
   rating: number;
 
-  @IsUUID()
-  bookId: string;
-
-  @IsUUID()
-  userId: string;
+ 
 }
