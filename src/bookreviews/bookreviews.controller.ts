@@ -19,12 +19,12 @@ export class BookreviewsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.bookreviewsService.findOne(+id);
+    return this.bookreviewsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBookreviewDto: UpdateBookreviewDto) {
-    return this.bookreviewsService.update(+id, updateBookreviewDto);
+    return this.bookreviewsService.update(id, updateBookreviewDto);
   }
 
   @Delete(':id')

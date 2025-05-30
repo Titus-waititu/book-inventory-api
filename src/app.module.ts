@@ -9,6 +9,9 @@ import { CategoriesModule } from './categories/categories.module';
 import { BookreviewsModule } from './bookreviews/bookreviews.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
+import { SeedService } from './seed/seed.service';
+import { SeedController } from './seed/seed.controller';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -20,8 +23,9 @@ import { ConfigModule } from '@nestjs/config';
     CategoriesModule,
     BookreviewsModule,
     DatabaseModule,
+    SeedModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, SeedController],
+  providers: [AppService, SeedService],
 })
 export class AppModule {}
